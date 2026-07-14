@@ -1,0 +1,5 @@
+.build/
+.swiftpm/
+starter-traces.sqlite*
+proof-pack.json
+.DS_Store

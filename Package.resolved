@@ -1,0 +1,15 @@
+{
+  "originHash" : "c0ba3634a7dab574724e5c40d35daec4a29a092e4316fd6dff6cdb7049b68965",
+  "pins" : [
+    {
+      "identity" : "dprovenancekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Therealdk8890/DProvenanceKit",
+      "state" : {
+        "revision" : "9fa77e377a516f2bc003e4b9242f723001ea9e73",
+        "version" : "0.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
