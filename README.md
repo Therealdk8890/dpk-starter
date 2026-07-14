@@ -6,7 +6,7 @@ Watch DProvenanceKit record, diff, gate, and sign an AI feature's reasoning — 
 git clone https://github.com/Therealdk8890/dpk-starter && cd dpk-starter && swift run
 ```
 
-No API keys, no live model, no setup. Requires a Swift 6 toolchain (Xcode 16+); the library itself deploys back to macOS 13 / iOS 16.
+No API keys, no live model, no setup. Requires a Swift 6.2+ toolchain (Xcode 26+); the library itself deploys back to macOS 13 / iOS 16.
 
 ## What you just watched
 

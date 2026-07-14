@@ -8,7 +8,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
-      - name: Toolchain
-        run: swift --version
+      - name: Select an Xcode with Swift 6.2+ (DPK's real toolchain floor)
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          if [ -z "$XCODE" ]; then echo "No Xcode 26+ on this image"; ls -d /Applications/Xcode*.app; exit 1; fi
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          swift --version
       - name: Build and run the demo (self-checking)
         run: swift run
