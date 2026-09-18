@@ -1,12 +1,12 @@
 # DProvenanceKit starter
 
-Watch DProvenanceKit record, diff, gate, and sign an AI feature's reasoning — in five minutes.
+Watch DProvenanceKit record, diff, gate, and sign an AI feature's instrumented decision path — in five minutes.
 
 ```bash
 git clone https://github.com/Therealdk8890/dpk-starter && cd dpk-starter && swift run
 ```
 
-No API keys, no live model, no setup. Requires Xcode 26.5+ (older Xcode 26 SDKs can't build DPK's Foundation Models adapter — [details](https://github.com/Therealdk8890/DProvenanceKit/issues/57)); the library itself deploys back to macOS 13 / iOS 16.
+Pins **DProvenanceKit 0.8.1** (`Package.swift` / `Package.resolved`). No API keys, no live model, no setup. Requires Xcode 26.5+ (older Xcode 26 SDKs can't build DPK's Foundation Models adapter — [details](https://github.com/Therealdk8890/DProvenanceKit/issues/57)); the library itself deploys back to macOS 13 / iOS 16.
 
 ## What you just watched
 
@@ -20,7 +20,7 @@ The demo simulates a support-ticket summarizer with a failure mode output tests 
 
 ## Make it yours
 
-**1. Name what your feature does.** Copy `SummarizerEvent` in [StarterDemo.swift](Sources/StarterDemo/StarterDemo.swift) and replace its cases with your feature's reasoning steps. Keep `typeIdentifier` stable forever; mark the steps whose disappearance should page you as `.critical`.
+**1. Name what your feature does.** Copy `SummarizerEvent` in [StarterDemo.swift](Sources/StarterDemo/StarterDemo.swift) and replace its cases with your feature's decision-path steps. Keep `typeIdentifier` stable forever; mark the steps whose disappearance should page you as `.critical`.
 
 **2. Record real runs.** Wrap your feature's execution in `DProvenanceKit<YourEvent>.run(contextID:store:)` and `record(...)` each step — recording is non-blocking and async-safe. Recording outside a `run { }` scope is a silent no-op, by design.
 
@@ -35,7 +35,7 @@ try await FMTrace.run(contextID: "…", store: store) { _ in
 
 or keep your existing session untouched and call `session.recordProvenance()` after the fact — same rule, inside `FMTrace.run { }`.
 
-**3. Gate your CI.** Run your rules against the store in a test, the way this demo's self-check does — a reasoning regression becomes a red PR, not a mystery in production. (The DPK CLI's `evaluate --gate` gates DPK's own diff-engine corpus, not your store.)
+**3. Gate your CI.** Run your rules against the store in a test, the way this demo's self-check does — a decision-path regression becomes a red PR, not a mystery in production. (The DPK CLI's `evaluate --gate` gates DPK's own diff-engine corpus, not your store.)
 
 **4. Ship evidence, not logs.** Hash your output into the trace before signing (the `artifactBound` event in this demo), wrap it in a `ProofPackDocument`, and hand reviewers a single JSON file they can verify offline from any [DProvenanceKit](https://github.com/Therealdk8890/DProvenanceKit) checkout:
 

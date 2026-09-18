@@ -8,11 +8,11 @@ import Foundation
 // The story: a support-ticket summarizer. Yesterday it worked — the model
 // generated the summary. Today, after an OS update, the model declines and the
 // app silently falls back to a template. The user-facing output still looks
-// fine, every output check passes — but the reasoning path changed, and that is
+// fine, every output check passes — but the instrumented decision path changed, and that is
 // exactly what DProvenanceKit records, diffs, gates, and signs.
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// Step 0 — your reasoning vocabulary. `typeIdentifier` is the stable key that
+/// Step 0 — your decision-path vocabulary. `typeIdentifier` is the stable key that
 /// diffing and querying are defined over; payloads can evolve, identifiers cannot.
 enum SummarizerEvent: TraceableEvent {
     case inputReceived(chars: Int)
@@ -95,7 +95,7 @@ struct StarterDemo {
         print("Before: \(before.events.map(\.payload.typeIdentifier).joined(separator: " → "))")
         print("After:  \(after.events.map(\.payload.typeIdentifier).joined(separator: " → "))\n")
 
-        // ── 2. Diff the two reasoning paths ─────────────────────────────────
+        // ── 2. Diff the two decision paths ──────────────────────────────────
         let diff = TraceDiffEngine<SummarizerEvent>().diff(
             base: before, comparison: after, minimumPriority: .structural
         )
