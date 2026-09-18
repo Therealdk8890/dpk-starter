@@ -5,7 +5,7 @@ let package = Package(
     name: "dpk-starter",
     platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/Therealdk8890/DProvenanceKit", from: "0.6.0")
+        .package(url: "https://github.com/Therealdk8890/DProvenanceKit", from: "0.8.1")
     ],
     targets: [
         .executableTarget(
